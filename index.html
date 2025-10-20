@@ -1,18 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tal’s Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tal Avhar — Portfolio</title>
+  <meta name="description" content="Satellites • Software • Creative Tech — Portfolio of Tal Avhar" />
+  <meta name="theme-color" content="#0f172a" />
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 50px; }
-    h1 { color: #0078ff; }
+    :root {
+      --bg: #0f172a;
+      --fg: #e2e8f0;
+      --accent: #7cc0ff;
+      --accent2: #9be29b;
+      --card: #1e293b;
+      --muted: #94a3b8;
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(0,0,0,.25);
+      --max: 900px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --fg: #1e293b;
+        --card: #f1f5f9;
+        --muted: #475569;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 24px 18px; }
+    header { text-align: center; padding: 50px 10px 40px; }
+    h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0; }
+    h2 { font-size: 1.6rem; margin: 30px 0 12px; }
+    h3 { margin: 0 0 6px; }
+    p { margin: 0 0 10px; }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    nav a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    section { margin: 40px 0; }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .muted { color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip {
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 13px;
+      background: rgba(255,255,255,.04);
+    }
+    .grid { display: grid; gap: 16px; }
+    @media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 40px 0 60px;
+    }
   </style>
 </head>
 <body>
-  <h1>Hello, world! 👋</h1>
-  <p>Welcome to my website hosted on GitHub Pages.</p>
+  <header>
+    <h1>Tal Avhar</h1>
+    <p class="muted">Satellites • Software • Creative Tech</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          Graduate of <strong>Handesaim Herzliya</strong> in Engineering Sciences and Physics.
+          Former <strong>Communications Team Lead</strong> and <strong>Ground Station Manager</strong> at the Herzliya Science Center Satellite Program.
+        </p>
+        <p>
+          I enjoy designing systems that blend software and physical signals — from radio communication to automation.
+          I also experiment with creative coding and music.
+        </p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">C++</span>
+          <span class="chip">GNU Radio</span>
+          <span class="chip">Linux / WSL</span>
+          <span class="chip">HTML / CSS / JS</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Automated Ground Station</h3>
+          <p class="muted">
+            Mobile satellite ground station with Doppler correction, AX.25 protocol, and real-time telemetry integration.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Game: Soul</h3>
+          <p class="muted">
+            Small indie game project built from scratch — physics engine, music composition, and level design.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Ground Station Mapping</h3>
+          <p class="muted">
+            Documented and diagrammed over 50 subsystems for future team reference and education.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Mini Tesla Coil</h3>
+          <p class="muted">
+            Educational coil built and demonstrated for outreach; integrated with safety controls and modular design.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Programming</h3>
+          <p class="muted">Python, C++, C#, JavaScript, HTML/CSS</p>
+        </div>
+        <div class="card">
+          <h3>Systems</h3>
+          <p class="muted">Linux/WSL, Git, Documentation, Databases</p>
+        </div>
+        <div class="card">
+          <h3>Comms & RF</h3>
+          <p class="muted">GNU Radio, AX.25, Yagi antennas, Doppler tracking</p>
+        </div>
+        <div class="card">
+          <h3>Creative</h3>
+          <p class="muted">Music composition, visual design, interactive projects</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p class="muted">Minimal for privacy, but here are safe public links:</p>
+        <ul>
+          <li><a href="https://github.com/TalAvhar" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="mailto:hello+portfolio@proton.me">Email</a></li>
+          <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="y"></span> Tal Avhar — Built with HTML/CSS • Hosted on GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
-
-
