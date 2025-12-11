@@ -315,7 +315,7 @@
     .card {
       background: var(--card);
       border-radius: var(--radius);
-      border: 1px solid var(--border);
+      border: var(--border) 1px solid;
       padding: 16px 18px;
       box-shadow: var(--shadow);
     }
@@ -434,6 +434,30 @@
       margin-bottom: 6px;
     }
 
+    /* ==== PERSONAL VIEW: Nyan Cat Background ==== */
+
+    #personal-view {
+      position: relative;
+      background-image: url("https://i.pinimg.com/736x/2e/fe/79/2efe7952076ce0826d028a239a75e673.jpg");
+      background-repeat: repeat;
+      background-size: 180px;
+      overflow: hidden;
+    }
+
+    #personal-view::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 0;
+    }
+
+    #personal-view > * {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ========= PERSONAL VIEW ========= */
 
     .persona-hero {
@@ -514,6 +538,7 @@
     footer a:hover {
       color: var(--accent);
     }
+    
   </style>
 </head>
 <body>
@@ -555,7 +580,7 @@
           <h1 class="hero-title">Satellites, software & creative experiments.</h1>
           <p class="hero-sub">
             I’m Tal, an ever-energetic engineering+physics graduate who loves building systems, with talent and experience in
-            <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering<strong> & <strong>technology</strong>, the <strong>arts</strong> and such..
+            <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering</strong> & <strong>technology</strong>, the <strong>arts</strong> and such..
             I’m quick to adapt to new environments, learn fast, and rely on strong intuition to navigate challenges and build forward-thinking solutions.
           </p>
 
@@ -580,13 +605,12 @@
           <p class="muted-small">
             I took a major part in writing software, integrating with hardware, 
             working on electromagnetic communication systems, managing logistical organization, teaching, and presenting to teams and audiences.
-            
           </p>
           <div class="hero-orbit-chip-row">
             <span class="hero-orbit-chip">Satellite Comms</span>
             <span class="hero-orbit-chip">GNU Radio &amp; AX.25</span>
             <span class="hero-orbit-chip">Linux / WSL</span>
-            <span class="hero-orbit-chip">Documenting &amp; Orgamization Management</span>
+            <span class="hero-orbit-chip">Documenting &amp; Organization Management</span>
           </div>
         </aside>
       </section>
