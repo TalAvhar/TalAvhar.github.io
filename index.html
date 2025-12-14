@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Tal Avhar – Dual-mode site: Professional / Personal -->
+  <!-- Tal Avhar – Professional site -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tal Avhar's Website — Professional and personal portfolio</title>
-  <meta name="description" content="Website of Tal Avhar — satellites, software, and personal interests." />
+  <title>Tal Avhar — Professional Portfolio</title>
+  <meta name="description" content="Professional portfolio of Tal Avhar — satellites, software, and engineering." />
   <meta name="theme-color" content="#020617" />
 
   <style>
@@ -117,6 +117,14 @@
       color: var(--fg);
     }
 
+    .nav-links a.nav-current {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #020617;
+      font-weight: 600;
+      border-color: transparent;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+    }
+
     @media (max-width: 600px) {
       .top-nav {
         flex-direction: column;
@@ -127,51 +135,7 @@
       }
     }
 
-    /* ========= MODE SWITCH (PRO / PERSONAL) ========= */
-
-    .mode-switch {
-      display: inline-flex;
-      margin-top: 10px;
-      border-radius: 999px;
-      padding: 3px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.7);
-    }
-
-    .mode-btn {
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding: 6px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .mode-btn span.icon {
-      font-size: 1rem;
-    }
-
-    .mode-btn.active {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #020617;
-      font-weight: 600;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.9);
-    }
-
-    .mode-btn:not(.active):hover {
-      color: var(--fg);
-    }
-
-    .view-hidden {
-      display: none;
-    }
-
-    /* ========= HERO (PRO VIEW) ========= */
+    /* ========= HERO ========= */
 
     .hero {
       display: grid;
@@ -315,7 +279,7 @@
     .card {
       background: var(--card);
       border-radius: var(--radius);
-      border: var(--border) 1px solid;
+      border: 1px solid var(--border);
       padding: 16px 18px;
       box-shadow: var(--shadow);
     }
@@ -434,94 +398,6 @@
       margin-bottom: 6px;
     }
 
-    /* ==== PERSONAL VIEW: Nyan Cat Background ==== */
-
-    #personal-view {
-      position: relative;
-      background-image: url("https://i.pinimg.com/736x/2e/fe/79/2efe7952076ce0826d028a239a75e673.jpg");
-      background-repeat: repeat;
-      background-size: 180px;
-      overflow: hidden;
-    }
-
-    #personal-view::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(2px);
-      z-index: 0;
-    }
-
-    #personal-view > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ========= PERSONAL VIEW ========= */
-
-    .persona-hero {
-      margin-top: 26px;
-      margin-bottom: 10px;
-    }
-
-    .persona-title {
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      margin: 0 0 6px;
-    }
-
-    .persona-sub {
-      color: var(--muted);
-      margin: 0 0 10px;
-      font-size: 0.96rem;
-    }
-
-    .emoji-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 720px) {
-      .emoji-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .emoji-card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 12px 13px;
-      text-align: left;
-      box-shadow: var(--shadow);
-      font-size: 0.9rem;
-    }
-
-    .emoji-card-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .emoji {
-      font-size: 1.3rem;
-    }
-
-    .personal-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 4px 0 0;
-      font-size: 0.9rem;
-    }
-
-    .personal-list li {
-      margin-bottom: 4px;
-    }
-
     footer {
       margin-top: 40px;
       padding-top: 14px;
@@ -538,7 +414,6 @@
     footer a:hover {
       color: var(--accent);
     }
-    
   </style>
 </head>
 <body>
@@ -550,410 +425,262 @@
           <div class="logo-icon" aria-hidden="true"></div>
           <span>Tal Avhar</span>
         </div>
-        <!-- Mode switch right under the logo -->
-        <div class="mode-switch" aria-label="View switcher">
-          <button class="mode-btn active" data-mode="pro">
-            <span class="icon">💼</span><span>Professional</span>
-          </button>
-          <button class="mode-btn" data-mode="personal">
-            <span class="icon">🎭</span><span>Personal</span>
-          </button>
-        </div>
       </div>
 
-      <nav class="nav-links" aria-label="Professional sections (only used in professional view)">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+      <nav class="nav-links" aria-label="Site navigation">
+        <a href="#about" class="nav-current">Professional</a>
+        <a href="personal.html">Personal</a>
       </nav>
     </header>
 
-    <!-- ===================================================== -->
-    <!--                         PRO VIEW                      -->
-    <!-- ===================================================== -->
-    <div id="pro-view">
-      <!-- ========= HERO ========= -->
-      <section class="hero">
-        <div>
-          <h1 class="hero-title">Satellites, software & creative experiments.</h1>
-          <p class="hero-sub">
-            I’m Tal, an ever-energetic engineering+physics graduate who loves building systems, with talent and experience in
-            <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering</strong> & <strong>technology</strong>, the <strong>arts</strong> and such..
-            I’m quick to adapt to new environments, learn fast, and rely on strong intuition to navigate challenges and build forward-thinking solutions.
-          </p>
+    <!-- ========= HERO ========= -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">Satellites, software & creative experiments.</h1>
+        <p class="hero-sub">
+          I’m Tal, an ever-energetic engineering+physics graduate who loves building systems, with talent and experience in
+          <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering</strong> &amp; <strong>technology</strong>, the <strong>arts</strong> and such..
+          I’m quick to adapt to new environments, learn fast, and rely on strong intuition to navigate challenges and build forward-thinking solutions.
+        </p>
 
-          <div class="hero-tags">
-            <span class="tag">Herzliya, Israel</span>
-            <span class="tag">Hebrew &amp; English — C2</span>
-            <span class="tag">Python • C# • JS</span>
-          </div>
-
-          <div class="hero-actions">
-            <a class="btn-primary" href="#projects">See my projects</a>
-            <a class="btn-ghost" href="#contact">Get in touch</a>
-          </div>
+        <div class="hero-tags">
+          <span class="tag">Herzliya, Israel</span>
+          <span class="tag">Hebrew &amp; English — C2</span>
+          <span class="tag">Python • C# • JS</span>
         </div>
 
-        <aside class="hero-orbit-card" aria-label="Quick overview">
-          <div class="hero-orbit-label">Snapshot</div>
-          <p style="margin-top:4px; margin-bottom:8px;">
-            Alumni of the Herzliya Science Center Satellite Program — where I served as Communications Team Lead and
-            Ground Station Manager.
-          </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">See my projects</a>
+          <a class="btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="hero-orbit-card" aria-label="Quick overview">
+        <div class="hero-orbit-label">Snapshot</div>
+        <p style="margin-top:4px; margin-bottom:8px;">
+          Alumni of the Herzliya Science Center Satellite Program — where I served as Communications Team Lead and
+          Ground Station Manager.
+        </p>
+        <p class="muted-small">
+          I took a major part in writing software, integrating with hardware, 
+          working on electromagnetic communication systems, managing logistical organization, teaching, and presenting to teams and audiences.
+        </p>
+        <div class="hero-orbit-chip-row">
+          <span class="hero-orbit-chip">Satellite Comms</span>
+          <span class="hero-orbit-chip">GNU Radio &amp; AX.25</span>
+          <span class="hero-orbit-chip">Linux / WSL</span>
+          <span class="hero-orbit-chip">Documentation &amp; Organization</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ========= ABOUT ========= -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <p class="section-intro">
+        I like building and understanding systems — software, hardware, engineering tools, communication tech, 
+        or creative projects — and I move naturally between fields because I learn fast and adapt quickly.
+        I bring a positive, energetic presence to any environment, and I’m the kind of person who supports the people
+        around me while pushing forward with careful optimism.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>What I like working on</h3>
           <p class="muted-small">
-            I took a major part in writing software, integrating with hardware, 
-            working on electromagnetic communication systems, managing logistical organization, teaching, and presenting to teams and audiences.
+            • Tools that make complex systems easier to use &amp; understand (GUIs, scripts, documentation).<br />
+            • Signal-related projects: satellite &amp; ham radio communications, and building physical electronic systems.<br />
+            • Small games or interactive projects where code, visuals, and music all meet.
           </p>
-          <div class="hero-orbit-chip-row">
-            <span class="hero-orbit-chip">Satellite Comms</span>
-            <span class="hero-orbit-chip">GNU Radio &amp; AX.25</span>
-            <span class="hero-orbit-chip">Linux / WSL</span>
-            <span class="hero-orbit-chip">Documenting &amp; Organization Management</span>
+        </article>
+
+        <article class="card">
+          <h3>Near Future</h3>
+          <p class="muted-small">
+            • Preparing for army service while gaining experience in high-tech environments.<br>
+            • Working on small side projects — including this website — to learn, experiment, and improve.<br>
+            • Exploring where I want to take my engineering, software, and creative work in the future.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= EXPERIENCE ========= -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-intro">
+        Some highlights from the last few years. Full details are in my CV, but here’s the short version.
+      </p>
+
+      <div class="grid grid-2">
+        <article class="card timeline-item">
+          <div class="timeline-label">2022–2025 · Herzliya Science Center</div>
+          <h3 class="timeline-title">Satellite Program — Comms &amp; Ground Station</h3>
+          <p class="muted-small">
+            • Led the Communications team and managed the ground station, including daily operations and automation work.<br />
+            • Worked on software for four Tevel-2 satellites: protocol handling, Doppler correction, and integration with GNU Radio pipelines.<br />
+            • Documented over 50 subsystems so new students could understand and operate the station.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Team lead</span>
+            <span class="pill">Systems &amp; docs</span>
+            <span class="pill">Teaching</span>
           </div>
-        </aside>
-      </section>
+        </article>
 
-      <!-- ========= ABOUT ========= -->
-      <section id="about">
-        <h2 class="section-title">About</h2>
-        <p class="section-intro">
-          I like building and understanding systems — software, hardware, engineering tools, communication tech, 
-          or creative projects — and I move naturally between fields because I learn fast and adapt quickly.
-          I bring a positive, energetic presence to any environment, 
-          and I’m the kind of person who supports the people around me while pushing forward with careful optimism.
-        </p>
-
-        <div class="grid grid-2">
-          <article class="card">
-            <h3>What I like working on</h3>
-            <p class="muted-small">
-              • Tools that make complex systems easier to use &amp; understand (GUIs, scripts, documentation).<br />
-              • Signal-related projects: satellite &amp; ham radio communications, making physical electronic systems .<br />
-              • Small games or interactive projects where code, visuals, and music all meet.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Near Future</h3>
-            <p class="muted-small">
-              • Preparing for army service while gaining experience in high-tech environments.<br>
-              • Working on small side projects — including this website — to learn, experiment, and improve.<br>
-              • Exploring where I want to take my engineering, software, and creative work in the future.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- ========= EXPERIENCE ========= -->
-      <section id="experience">
-        <h2 class="section-title">Experience</h2>
-        <p class="section-intro">
-          Some highlights from the last few years. Full details are in my CV, but here’s the short version.
-        </p>
-
-        <div class="grid grid-2">
-          <article class="card timeline-item">
-            <div class="timeline-label">2022–2025 · Herzliya Science Center</div>
-            <h3 class="timeline-title">Satellite Program — Comms &amp; Ground Station</h3>
-            <p class="muted-small">
-              • Led the Communications team and managed the ground station, including daily operations and automation work.<br />
-              • Worked on software for four Tevel-2 satellites: protocol handling, Doppler correction, and integration with GNU Radio pipelines.<br />
-              • Documented over 50 subsystems so new students could understand and operate the station.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Team lead</span>
-              <span class="pill">Systems &amp; docs</span>
-              <span class="pill">Teaching</span>
-            </div>
-          </article>
-
-          <article class="card timeline-item">
-            <div class="timeline-label">Independent &amp; School Projects</div>
-            <h3 class="timeline-title">Engineering + Creative Projects</h3>
-            <p class="muted-small">
-              • Educational mini Tesla coil designed and built from scratch.<br />
-              • <em>Soul</em> — small game with custom physics, original music, and level design.<br />
-              • Extra experiments with electronics, antennas, and random “can I build this?” ideas.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Electronics</span>
-              <span class="pill">Game dev</span>
-              <span class="pill">Music</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ========= PROJECTS ========= -->
-      <section id="projects">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-intro">
-          Some projects are still partially internal / not open-sourced, so links may be placeholders for now.
-          As I clean things up, I’ll publish more details.
-        </p>
-
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Automated Ground Station</h3>
-            <p class="muted-small">
-              Mobile ground station setup with Doppler correction, AX.25 support, and the ability to
-              plug into GNU Radio flows. Focused on reliability and making operations friendlier.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Python</span>
-              <span class="pill">GNU Radio</span>
-              <span class="pill">Linux / WSL</span>
-            </div>
-            <p class="muted-small" style="margin-top:8px;">
-              <em>Repo link coming after sanitizing internal bits.</em>
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Ground Station Mapping</h3>
-            <p class="muted-small">
-              System diagrams &amp; docs for 50+ subsystems — created to help others understand how
-              everything connects, from antennas and RF to software and monitoring.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Draw.io</span>
-              <span class="pill">Documentation</span>
-              <span class="pill">Systems thinking</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Soul — Game Prototype</h3>
-            <p class="muted-small">
-              Indie-style platformer built as a school hackathon project: custom physics, original
-              music, level design, and a lot of late-night debugging.
-            </p>
-            <div class="pill-row">
-              <span class="pill">C# / GDScript</span>
-              <span class="pill">Game dev</span>
-              <span class="pill">Music</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- ========= SKILLS ========= -->
-      <section id="skills">
-        <h2 class="section-title">Skills</h2>
-
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Programming</h3>
-            <p class="muted-small">
-              Python, C++, C#, JavaScript, HTML/CSS, Git.  
-              Comfortable with small tools, scripts, and glue code around systems.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Comms &amp; RF</h3>
-            <p class="muted-small">
-              GNU Radio, AX.25, SDR basics, Yagi antennas, Doppler workflows and ground-station thinking.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Systems &amp; People</h3>
-            <p class="muted-small">
-              Linux/WSL, basic databases, docs &amp; diagrams, teaching younger students, and explaining
-              weird technical stuff in plain language.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- ========= CONTACT ========= -->
-      <section id="contact">
-        <h2 class="section-title">Contact &amp; bits about me</h2>
-
-        <div class="contact-grid">
-          <article class="card">
-            <h3>Contact</h3>
-            <ul class="contact-list">
-              <li>
-                <span class="label">Email</span>
-                <a href="mailto:talavhar3@gmail.com">talavhar3@gmail.com</a>
-              </li>
-              <li>
-                <span class="label">GitHub</span>
-                <a href="https://github.com/TalAvhar" target="_blank" rel="noopener">
-                  github.com/TalAvhar
-                </a>
-              </li>
-              <li>
-                <span class="label">LinkedIn</span>
-                <!-- TODO: replace this with your actual LinkedIn URL -->
-                <a href="https://www.linkedin.com" target="_blank" rel="noopener">
-                  linkedin.com/in/your-profile
-                </a>
-              </li>
-            </ul>
-            <p class="contact-note">
-              For anything serious (roles, collaborations, or “can we build X?” ideas), email is best.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Fun facts</h3>
-            <ul class="fun-facts-list">
-              <li>🎧 I like combining engineering with music and game design.</li>
-              <li>📡 I really enjoy the feeling of getting actual data back from something in orbit.</li>
-              <li>🧪 I learn fastest by building small experiments, breaking them, and fixing them again.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-    </div>
-
-    <!-- ===================================================== -->
-    <!--                      PERSONAL VIEW                    -->
-    <!-- ===================================================== -->
-    <div id="personal-view" class="view-hidden">
-      <section class="persona-hero">
-        <h1 class="persona-title">Tal, but make it personal.</h1>
-        <p class="persona-sub">
-          This side of the site is more “me as a human” than “me as an engineer”.
-          Expect music, shows, art, games, and random preferences that are absolutely not in any CV.
-        </p>
-      </section>
-
-      <section>
-        <div class="grid grid-2">
-          <article class="card">
-            <h3>Current obsessions</h3>
-            <ul class="personal-list">
-              <li>• Trying to understand why some songs hit harder at 3am than at 3pm.</li>
-              <li>• Thinking way too much about game soundtracks and sound design.</li>
-              <li>• Re-playing comfort games for the 8th time “for research purposes”.</li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>How to read this tab</h3>
-            <p class="muted-small">
-              Nothing here is optimized for recruiters, it’s just stuff I like.
-              Feel free to skim or judge my taste in shows. That’s part of the fun.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="section-title">Stuff I like</h2>
-        <p class="section-intro">
-          Replace these lists with your actual tastes: specific artists, shows, genres, etc.
-        </p>
-
-        <div class="emoji-grid">
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">🎵</span><span>Music</span>
-            </div>
-            <ul class="personal-list">
-              <li>• Genres I orbit: [your genres here]</li>
-              <li>• Go-to “focus” playlist: [describe vibe]</li>
-              <li>• Songs I loop until I burn out on them.</li>
-            </ul>
+        <article class="card timeline-item">
+          <div class="timeline-label">Independent &amp; School Projects</div>
+          <h3 class="timeline-title">Engineering + Creative Projects</h3>
+          <p class="muted-small">
+            • Educational mini Tesla coil designed and built from scratch.<br />
+            • <em>Soul</em> — small game with custom physics, original music, and level design.<br />
+            • Extra experiments with electronics, antennas, and random “can I build this?” ideas.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Electronics</span>
+            <span class="pill">Game dev</span>
+            <span class="pill">Music</span>
           </div>
+        </article>
+      </div>
+    </section>
 
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">📺</span><span>Shows &amp; Movies</span>
-            </div>
-            <ul class="personal-list">
-              <li>• Comfort show: [insert your comfort show]</li>
-              <li>• I love when sci-fi actually tries to respect physics.</li>
-              <li>• Strong opinions about endings that don’t land.</li>
-            </ul>
-          </div>
+    <!-- ========= PROJECTS ========= -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-intro">
+        Some projects are still partially internal / not open-sourced, so links may be placeholders for now.
+        As I clean things up, I’ll publish more details.
+      </p>
 
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">🎮</span><span>Games</span>
-            </div>
-            <ul class="personal-list">
-              <li>• Games that reward curiosity and exploration.</li>
-              <li>• Good movement mechanics = instant bonus points.</li>
-              <li>• I pay way too much attention to OSTs.</li>
-            </ul>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Automated Ground Station</h3>
+          <p class="muted-small">
+            Mobile ground station setup with Doppler correction, AX.25 support, and the ability to
+            plug into GNU Radio flows. Focused on reliability and making operations friendlier.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">GNU Radio</span>
+            <span class="pill">Linux / WSL</span>
           </div>
+          <p class="muted-small" style="margin-top:8px;">
+            <em>Repo link coming after sanitizing internal bits.</em>
+          </p>
+        </article>
 
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">✏️</span><span>Art &amp; aesthetics</span>
-            </div>
-            <ul class="personal-list">
-              <li>• [Your favourite art styles here]</li>
-              <li>• Love clean UI with tiny details you only notice later.</li>
-              <li>• Neon + dark mode = always a win.</li>
-            </ul>
+        <article class="card">
+          <h3>Ground Station Mapping</h3>
+          <p class="muted-small">
+            System diagrams &amp; docs for 50+ subsystems — created to help others understand how
+            everything connects, from antennas and RF to software and monitoring.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Draw.io</span>
+            <span class="pill">Documentation</span>
+            <span class="pill">Systems thinking</span>
           </div>
+        </article>
 
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">🐉</span><span>Random hobbies</span>
-            </div>
-            <ul class="personal-list">
-              <li>• [Put your hobbies here: drums, drawing, whatever]</li>
-              <li>• Doing rabbit-hole research on whatever topic my brain picked that week.</li>
-              <li>• Accidentally turning “small ideas” into multi-day projects.</li>
-            </ul>
+        <article class="card">
+          <h3>Soul — Game Prototype</h3>
+          <p class="muted-small">
+            Indie-style platformer built as a school hackathon project: custom physics, original
+            music, level design, and a lot of late-night debugging.
+          </p>
+          <div class="pill-row">
+            <span class="pill">C# / GDScript</span>
+            <span class="pill">Game dev</span>
+            <span class="pill">Music</span>
           </div>
+        </article>
+      </div>
+    </section>
 
-          <div class="emoji-card">
-            <div class="emoji-card-header">
-              <span class="emoji">💬</span><span>Small-talk cheat sheet</span>
-            </div>
-            <ul class="personal-list">
-              <li>• Ask me about music, weird science facts, or game design ideas.</li>
-              <li>• I’ll probably answer with way too much detail.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </div>
+    <!-- ========= SKILLS ========= -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Programming</h3>
+          <p class="muted-small">
+            Python, C++, C#, JavaScript, HTML/CSS, Git.  
+            Comfortable with small tools, scripts, and glue code around systems.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Comms &amp; RF</h3>
+          <p class="muted-small">
+            GNU Radio, AX.25, SDR basics, Yagi antennas, Doppler workflows and ground-station thinking.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Systems &amp; People</h3>
+          <p class="muted-small">
+            Linux/WSL, basic databases, docs &amp; diagrams, teaching younger students, and explaining
+            weird technical stuff in plain language.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= CONTACT ========= -->
+    <section id="contact">
+      <h2 class="section-title">Contact &amp; bits about me</h2>
+
+      <div class="contact-grid">
+        <article class="card">
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li>
+              <span class="label">Email</span>
+              <a href="mailto:talavhar3@gmail.com">talavhar3@gmail.com</a>
+            </li>
+            <li>
+              <span class="label">GitHub</span>
+              <a href="https://github.com/TalAvhar" target="_blank" rel="noopener">
+                github.com/TalAvhar
+              </a>
+            </li>
+            <li>
+              <span class="label">LinkedIn</span>
+              <!-- TODO: replace this with your actual LinkedIn URL -->
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener">
+                linkedin.com/in/your-profile
+              </a>
+            </li>
+          </ul>
+          <p class="contact-note">
+            For anything serious (roles, collaborations, or “can we build X?” ideas), email is best.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Fun facts</h3>
+          <ul class="fun-facts-list">
+            <li>🎧 I like combining engineering with music and game design.</li>
+            <li>📡 I really enjoy the feeling of getting actual data back from something in orbit.</li>
+            <li>🧪 I learn fastest by building small experiments, breaking them, and fixing them again.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
     <!-- ========= FOOTER ========= -->
     <footer>
       <span id="year"></span> · Built by Tal Avhar · Hosted on GitHub Pages
-      · <a href="#top">Back to top</a>
+      · <a href="#top">Back to top</a> ·
+      <a href="personal.html">Switch to personal</a>
     </footer>
   </div>
 
   <script>
     // Set current year automatically
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Mode switch logic
-    const proView = document.getElementById("pro-view");
-    const personalView = document.getElementById("personal-view");
-    const modeButtons = document.querySelectorAll(".mode-btn");
-
-    modeButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const mode = btn.dataset.mode;
-
-        modeButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        if (mode === "pro") {
-          proView.classList.remove("view-hidden");
-          personalView.classList.add("view-hidden");
-        } else {
-          personalView.classList.remove("view-hidden");
-          proView.classList.add("view-hidden");
-          // Scroll a bit down so you don't just see the nav
-          window.scrollTo({ top: document.getElementById("top").offsetTop + 60, behavior: "smooth" });
-        }
-      });
-    });
   </script>
 </body>
 </html>
