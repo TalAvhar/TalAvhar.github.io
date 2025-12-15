@@ -32,16 +32,20 @@
       color: var(--fg);
       line-height: 1.6;
 
-      /* Full-page Nyan background */
       background-image: url("https://i.pinimg.com/736x/2e/fe/79/2efe7952076ce0826d028a239a75e673.jpg");
       background-repeat: repeat;
-      background-size: 260px; /* bigger tiles */
+      background-size: 260px;
       background-attachment: fixed;
       background-position: center;
       position: relative;
     }
 
-    /* Global overlay to keep text readable */
+    /* RTL mode for Hebrew */
+    body.rtl { direction: rtl; }
+    body.rtl .top-nav { direction: rtl; }
+    body.rtl .nav-links { justify-content: flex-start; }
+    body.rtl .emoji-card { text-align: right; }
+
     body::before {
       content: "";
       position: fixed;
@@ -82,15 +86,19 @@
     }
 
     .logo-icon {
-      width: 28px;
-      height: 28px;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 20%, #f97316, transparent 55%),
-        radial-gradient(circle at 70% 80%, #38bdf8, transparent 55%),
-        #020617;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9), 0 10px 25px rgba(0, 0, 0, 0.9);
+
+      background-image: url("images/tal-pfp.jpeg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      border: 2px solid rgba(255, 255, 255, 0.65);
+      box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.55),
+        0 10px 25px rgba(0, 0, 0, 0.55);
     }
 
     .nav-links {
@@ -98,9 +106,11 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
     }
 
-    .nav-links a {
+    .nav-links a,
+    .lang-btn {
       font-size: 0.9rem;
       padding: 6px 11px;
       border-radius: 999px;
@@ -109,10 +119,12 @@
       color: #cbd5f5;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .lang-btn:hover {
       border-color: var(--border);
       background: rgba(15, 23, 42, 1);
       color: #f9fafb;
+      text-decoration: none;
     }
 
     .nav-links a.nav-current {
@@ -121,6 +133,11 @@
       font-weight: 600;
       border-color: transparent;
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.95);
+    }
+
+    .lang-btn {
+      cursor: pointer;
+      user-select: none;
     }
 
     @media (max-width: 600px) {
@@ -259,20 +276,21 @@
       <div>
         <div class="logo-mark">
           <div class="logo-icon" aria-hidden="true"></div>
-          <span>Tal Avhar</span>
+          <span data-i18n="name">Tal Avhar</span>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Site navigation">
-        <a href="index.html">Professional</a>
-        <a href="personal.html" class="nav-current">Personal</a>
+        <a href="index.html" data-i18n="nav_professional">Professional</a>
+        <a href="personal.html" class="nav-current" data-i18n="nav_personal">Personal</a>
+        <button class="lang-btn" id="langToggle" type="button" aria-label="Toggle language">EN</button>
       </nav>
     </header>
 
     <!-- ========= PERSONAL HERO ========= -->
     <section class="persona-hero">
-      <h1 class="persona-title">Tal, but make it personal.</h1>
-      <p class="persona-sub">
+      <h1 class="persona-title" data-i18n="p_title">Tal, but make it personal.</h1>
+      <p class="persona-sub" data-i18n="p_sub">
         This side of the site is more “me as a human” than “me as an engineer”.
         Expect music, shows, art, games, and random preferences that are absolutely not in any CV.
       </p>
@@ -281,17 +299,17 @@
     <section>
       <div class="grid grid-2">
         <article class="card">
-          <h3>Current obsessions</h3>
+          <h3 data-i18n="obs_title">Current obsessions</h3>
           <ul class="personal-list">
-            <li>• Trying to understand why some songs hit harder at 3am than at 3pm.</li>
-            <li>• Thinking way too much about game soundtracks and sound design.</li>
-            <li>• Re-playing comfort games for the 8th time “for research purposes”.</li>
+            <li data-i18n="obs1">• Trying to understand why some songs hit harder at 3am than at 3pm.</li>
+            <li data-i18n="obs2">• Thinking way too much about game soundtracks and sound design.</li>
+            <li data-i18n="obs3">• Re-playing comfort games for the 8th time “for research purposes”.</li>
           </ul>
         </article>
 
         <article class="card">
-          <h3>How to read this tab</h3>
-          <p class="personal-list">
+          <h3 data-i18n="read_title">How to read this tab</h3>
+          <p class="personal-list" data-i18n="read_body">
             Nothing here is optimized for recruiters, it’s just stuff I like.
             Feel free to skim or judge my taste in shows. That’s part of the fun.
           </p>
@@ -300,74 +318,74 @@
     </section>
 
     <section>
-      <h2 class="section-title">Stuff I like</h2>
-      <p class="section-intro">
+      <h2 class="section-title" data-i18n="like_title">Stuff I like</h2>
+      <p class="section-intro" data-i18n="like_intro">
         Replace these lists with your actual tastes: specific artists, shows, genres, etc.
       </p>
 
       <div class="emoji-grid">
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">🎵</span><span>Music</span>
+            <span class="emoji">🎵</span><span data-i18n="music_title">Music</span>
           </div>
           <ul class="personal-list">
-            <li>• Genres I orbit: [your genres here]</li>
-            <li>• Go-to “focus” playlist: [describe vibe]</li>
-            <li>• Songs I loop until I burn out on them.</li>
+            <li data-i18n="music1">• Genres I orbit: [your genres here]</li>
+            <li data-i18n="music2">• Go-to “focus” playlist: [describe vibe]</li>
+            <li data-i18n="music3">• Songs I loop until I burn out on them.</li>
           </ul>
         </div>
 
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">📺</span><span>Shows &amp; Movies</span>
+            <span class="emoji">📺</span><span data-i18n="shows_title">Shows &amp; Movies</span>
           </div>
           <ul class="personal-list">
-            <li>• Comfort show: [insert your comfort show]</li>
-            <li>• I love when sci-fi actually tries to respect physics.</li>
-            <li>• Strong opinions about endings that don’t land.</li>
+            <li data-i18n="shows1">• Comfort show: [insert your comfort show]</li>
+            <li data-i18n="shows2">• I love when sci-fi actually tries to respect physics.</li>
+            <li data-i18n="shows3">• Strong opinions about endings that don’t land.</li>
           </ul>
         </div>
 
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">🎮</span><span>Games</span>
+            <span class="emoji">🎮</span><span data-i18n="games_title">Games</span>
           </div>
           <ul class="personal-list">
-            <li>• Games that reward curiosity and exploration.</li>
-            <li>• Good movement mechanics = instant bonus points.</li>
-            <li>• I pay way too much attention to OSTs.</li>
+            <li data-i18n="games1">• Games that reward curiosity and exploration.</li>
+            <li data-i18n="games2">• Good movement mechanics = instant bonus points.</li>
+            <li data-i18n="games3">• I pay way too much attention to OSTs.</li>
           </ul>
         </div>
 
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">✏️</span><span>Art &amp; aesthetics</span>
+            <span class="emoji">✏️</span><span data-i18n="art_title">Art &amp; aesthetics</span>
           </div>
           <ul class="personal-list">
-            <li>• [Your favourite art styles here]</li>
-            <li>• Love clean UI with tiny details you only notice later.</li>
-            <li>• Neon + dark mode = always a win.</li>
+            <li data-i18n="art1">• [Your favourite art styles here]</li>
+            <li data-i18n="art2">• Love clean UI with tiny details you only notice later.</li>
+            <li data-i18n="art3">• Neon + dark mode = always a win.</li>
           </ul>
         </div>
 
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">🐉</span><span>Random hobbies</span>
+            <span class="emoji">🐉</span><span data-i18n="hobby_title">Random hobbies</span>
           </div>
           <ul class="personal-list">
-            <li>• [Put your hobbies here: drums, drawing, whatever]</li>
-            <li>• Doing rabbit-hole research on whatever topic my brain picked that week.</li>
-            <li>• Accidentally turning “small ideas” into multi-day projects.</li>
+            <li data-i18n="hobby1">• [Put your hobbies here: drums, drawing, whatever]</li>
+            <li data-i18n="hobby2">• Doing rabbit-hole research on whatever topic my brain picked that week.</li>
+            <li data-i18n="hobby3">• Accidentally turning “small ideas” into multi-day projects.</li>
           </ul>
         </div>
 
         <div class="emoji-card">
           <div class="emoji-card-header">
-            <span class="emoji">💬</span><span>Small-talk cheat sheet</span>
+            <span class="emoji">💬</span><span data-i18n="talk_title">Small-talk cheat sheet</span>
           </div>
           <ul class="personal-list">
-            <li>• Ask me about music, weird science facts, or game design ideas.</li>
-            <li>• I’ll probably answer with way too much detail.</li>
+            <li data-i18n="talk1">• Ask me about music, weird science facts, or game design ideas.</li>
+            <li data-i18n="talk2">• I’ll probably answer with way too much detail.</li>
           </ul>
         </div>
       </div>
@@ -375,14 +393,128 @@
 
     <!-- ========= FOOTER ========= -->
     <footer>
-      <span id="year"></span> · Built by Tal Avhar · Hosted on GitHub Pages
-      · <a href="index.html">Back to professional</a> ·
-      <a href="#top">Back to top</a>
+      <span id="year"></span>
+      <span data-i18n="footer_mid"> · Built by Tal Avhar · Hosted on GitHub Pages</span>
+      · <a href="index.html" data-i18n="footer_back">Back to professional</a> ·
+      <a href="#top" data-i18n="footer_top">Back to top</a>
     </footer>
   </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const LANG_KEY = "site_lang";
+    const I18N = {
+      en: {
+        name: "Tal Avhar",
+        nav_professional: "Professional",
+        nav_personal: "Personal",
+        p_title: "Tal, but make it personal.",
+        p_sub:
+          "This side of the site is more “me as a human” than “me as an engineer”. Expect music, shows, art, games, and random preferences that are absolutely not in any CV.",
+        obs_title: "Current obsessions",
+        obs1: "• Trying to understand why some songs hit harder at 3am than at 3pm.",
+        obs2: "• Thinking way too much about game soundtracks and sound design.",
+        obs3: "• Re-playing comfort games for the 8th time “for research purposes”.",
+        read_title: "How to read this tab",
+        read_body:
+          "Nothing here is optimized for recruiters, it’s just stuff I like. Feel free to skim or judge my taste in shows. That’s part of the fun.",
+        like_title: "Stuff I like",
+        like_intro: "Replace these lists with your actual tastes: specific artists, shows, genres, etc.",
+        music_title: "Music",
+        music1: "• Genres I orbit: [your genres here]",
+        music2: "• Go-to “focus” playlist: [describe vibe]",
+        music3: "• Songs I loop until I burn out on them.",
+        shows_title: "Shows & Movies",
+        shows1: "• Comfort show: [insert your comfort show]",
+        shows2: "• I love when sci-fi actually tries to respect physics.",
+        shows3: "• Strong opinions about endings that don’t land.",
+        games_title: "Games",
+        games1: "• Games that reward curiosity and exploration.",
+        games2: "• Good movement mechanics = instant bonus points.",
+        games3: "• I pay way too much attention to OSTs.",
+        art_title: "Art & aesthetics",
+        art1: "• [Your favourite art styles here]",
+        art2: "• Love clean UI with tiny details you only notice later.",
+        art3: "• Neon + dark mode = always a win.",
+        hobby_title: "Random hobbies",
+        hobby1: "• [Put your hobbies here: drums, drawing, whatever]",
+        hobby2: "• Doing rabbit-hole research on whatever topic my brain picked that week.",
+        hobby3: "• Accidentally turning “small ideas” into multi-day projects.",
+        talk_title: "Small-talk cheat sheet",
+        talk1: "• Ask me about music, weird science facts, or game design ideas.",
+        talk2: "• I’ll probably answer with way too much detail.",
+        footer_mid: " · Built by Tal Avhar · Hosted on GitHub Pages",
+        footer_back: "Back to professional",
+        footer_top: "Back to top",
+      },
+      he: {
+        name: "טל אבהר",
+        nav_professional: "מקצועי",
+        nav_personal: "אישי",
+        p_title: "טל, אבל בגרסה האישית.",
+        p_sub:
+          "הצד הזה של האתר הוא יותר “אני בתור בן-אדם” מאשר “אני בתור מהנדס”. תצפו למוזיקה, סדרות, אמנות, משחקים, והעדפות אקראיות שבחיים לא נכנסות לקו״ח.",
+        obs_title: "אובססיות כרגע",
+        obs1: "• מנסה להבין למה שירים פוגעים חזק יותר ב־3 בלילה מאשר ב־3 בצהריים.",
+        obs2: "• חושב יותר מדי על פסי קול של משחקים וסאונד דיזיין.",
+        obs3: "• משחק שוב משחקי “נוחות” בפעם ה־8 — “למטרות מחקר”.",
+        read_title: "איך לקרוא את הטאב הזה",
+        read_body:
+          "שום דבר פה לא מותאם למגייסים — זה פשוט דברים שאני אוהב. תרגישו חופשי לדפדף או לשפוט טעם בסדרות. זה חלק מהכיף.",
+        like_title: "דברים שאני אוהב",
+        like_intro: "תחליפו את הרשימות לטעם האמיתי שלכם: אמנים, סדרות, ז׳אנרים וכו׳.",
+        music_title: "מוזיקה",
+        music1: "• ז׳אנרים שאני מסתובב סביבם: [כאן]",
+        music2: "• פלייליסט “פוקוס”: [איזה וייב]",
+        music3: "• שירים שאני חורש עד שנמאס.",
+        shows_title: "סדרות וסרטים",
+        shows1: "• סדרת נוחות: [כאן]",
+        shows2: "• מת על מד״ב שמנסה לכבד פיזיקה.",
+        shows3: "• דעות חזקות על סיומים שלא נוחתים.",
+        games_title: "משחקים",
+        games1: "• משחקים שמתגמלים סקרנות וחקר.",
+        games2: "• תנועה טובה = בונוס ענק.",
+        games3: "• אני שם יותר מדי לב ל־OST.",
+        art_title: "אמנות ואסתטיקה",
+        art1: "• [סגנונות אהובים כאן]",
+        art2: "• UI נקי עם פרטים קטנים שאפשר לגלות מאוחר יותר.",
+        art3: "• ניאון + דארק מוד = תמיד מנצח.",
+        hobby_title: "תחביבים אקראיים",
+        hobby1: "• [תופים/ציור/מה שבא]",
+        hobby2: "• נכנס למחילות־ארנב על נושא שהמוח בחר השבוע.",
+        hobby3: "• הופך “רעיון קטן” בטעות לפרויקט של ימים.",
+        talk_title: "צ׳יט קטן לסמול-טוק",
+        talk1: "• תשאלו אותי על מוזיקה, עובדות מדע מוזרות, או רעיונות לעיצוב משחקים.",
+        talk2: "• כנראה אענה עם יותר מדי פירוט.",
+        footer_mid: " · נבנה על ידי טל אבהר · מאוחסן ב־GitHub Pages",
+        footer_back: "חזרה למקצועי",
+        footer_top: "חזרה למעלה",
+      }
+    };
+
+    function applyLang(lang) {
+      const isHe = lang === "he";
+      document.documentElement.lang = lang;
+      document.body.classList.toggle("rtl", isHe);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const txt = I18N[lang]?.[key];
+        if (typeof txt === "string") el.textContent = txt;
+      });
+
+      localStorage.setItem(LANG_KEY, lang);
+      const btn = document.getElementById("langToggle");
+      if (btn) btn.textContent = isHe ? "HE" : "EN";
+    }
+
+    document.getElementById("langToggle")?.addEventListener("click", () => {
+      const cur = localStorage.getItem(LANG_KEY) || "en";
+      applyLang(cur === "en" ? "he" : "en");
+    });
+
+    applyLang(localStorage.getItem(LANG_KEY) || "en");
   </script>
 </body>
 </html>

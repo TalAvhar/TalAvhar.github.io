@@ -57,6 +57,13 @@
       line-height: 1.6;
     }
 
+    /* RTL mode for Hebrew */
+    body.rtl { direction: rtl; }
+    body.rtl .top-nav { direction: rtl; }
+    body.rtl .nav-links { justify-content: flex-start; }
+    body.rtl .timeline-item { border-left: none; border-right: 2px solid rgba(148, 163, 184, 0.4); padding-left: 0; padding-right: 12px; margin-left: 0; margin-right: 3px; }
+    body.rtl .contact-list span.label { min-width: 90px; }
+
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
@@ -88,7 +95,7 @@
       height: 34px;
       border-radius: 999px;
 
-      background-image: url("images/tal-pfp.jpeg"); /* ← THIS is the important line */
+      background-image: url("images/tal-pfp.jpeg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -104,9 +111,11 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      align-items: center;
     }
 
-    .nav-links a {
+    .nav-links a,
+    .lang-btn {
       font-size: 0.9rem;
       padding: 6px 11px;
       border-radius: 999px;
@@ -115,10 +124,12 @@
       color: var(--muted);
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .lang-btn:hover {
       border-color: var(--border);
       background: rgba(15, 23, 42, 0.9);
       color: var(--fg);
+      text-decoration: none;
     }
 
     .nav-links a.nav-current {
@@ -127,6 +138,11 @@
       font-weight: 600;
       border-color: transparent;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+    }
+
+    .lang-btn {
+      cursor: pointer;
+      user-select: none;
     }
 
     @media (max-width: 600px) {
@@ -427,62 +443,64 @@
       <div>
         <div class="logo-mark">
           <div class="logo-icon" aria-hidden="true"></div>
-          <span>Tal Avhar</span>
+          <span data-i18n="name">Tal Avhar</span>
         </div>
       </div>
 
       <nav class="nav-links" aria-label="Site navigation">
-        <a href="#about" class="nav-current">Professional</a>
-        <a href="personal.html">Personal</a>
+        <a href="#about" class="nav-current" data-i18n="nav_professional">Professional</a>
+        <a href="personal.html" data-i18n="nav_personal">Personal</a>
+        <button class="lang-btn" id="langToggle" type="button" aria-label="Toggle language">EN</button>
       </nav>
     </header>
 
     <!-- ========= HERO ========= -->
     <section class="hero">
       <div>
-        <h1 class="hero-title">Satellites, software & creative experiments.</h1>
-        <p class="hero-sub">
+        <h1 class="hero-title" data-i18n="hero_title">Satellites, software & creative experiments.</h1>
+
+        <p class="hero-sub" data-i18n-html="hero_sub">
           I’m Tal, an ever-energetic engineering+physics graduate who loves building systems, with talent and experience in
           <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering</strong> &amp; <strong>technology</strong>, the <strong>arts</strong> and such..
           I’m quick to adapt to new environments, learn fast, and rely on strong intuition to navigate challenges and build forward-thinking solutions.
         </p>
 
         <div class="hero-tags">
-          <span class="tag">Herzliya, Israel</span>
-          <span class="tag">Hebrew &amp; English — C2</span>
-          <span class="tag">Python • C# • JS</span>
+          <span class="tag" data-i18n="tag_location">Herzliya, Israel</span>
+          <span class="tag" data-i18n="tag_langs">Hebrew &amp; English — C2</span>
+          <span class="tag" data-i18n="tag_stack">Python • C# • JS</span>
         </div>
 
         <div class="hero-actions">
-          <a class="btn-primary" href="#projects">See my projects</a>
-          <a class="btn-ghost" href="#contact">Get in touch</a>
+          <a class="btn-primary" href="#projects" data-i18n="btn_projects">See my projects</a>
+          <a class="btn-ghost" href="#contact" data-i18n="btn_contact">Get in touch</a>
         </div>
       </div>
 
       <aside class="hero-orbit-card" aria-label="Quick overview">
-        <div class="hero-orbit-label">Snapshot</div>
-        <p style="margin-top:4px; margin-bottom:8px;">
+        <div class="hero-orbit-label" data-i18n="snapshot_label">Snapshot</div>
+        <p style="margin-top:4px; margin-bottom:8px;" data-i18n="snapshot_text">
           Alumni of the Herzliya Science Center Satellite Program — where I served as Communications Team Lead and
           Ground Station Manager.
         </p>
-        <p class="muted-small">
-          I took a major part in writing software, integrating with hardware, 
+        <p class="muted-small" data-i18n="snapshot_sub">
+          I took a major part in writing software, integrating with hardware,
           working on electromagnetic communication systems, managing logistical organization, teaching, and presenting to teams and audiences.
         </p>
         <div class="hero-orbit-chip-row">
-          <span class="hero-orbit-chip">Satellite Comms</span>
-          <span class="hero-orbit-chip">GNU Radio &amp; AX.25</span>
-          <span class="hero-orbit-chip">Linux / WSL</span>
-          <span class="hero-orbit-chip">Documentation &amp; Organization</span>
+          <span class="hero-orbit-chip" data-i18n="chip_satcom">Satellite Comms</span>
+          <span class="hero-orbit-chip" data-i18n="chip_gnuradio">GNU Radio &amp; AX.25</span>
+          <span class="hero-orbit-chip" data-i18n="chip_linux">Linux / WSL</span>
+          <span class="hero-orbit-chip" data-i18n="chip_docs">Documentation &amp; Organization</span>
         </div>
       </aside>
     </section>
 
     <!-- ========= ABOUT ========= -->
     <section id="about">
-      <h2 class="section-title">About</h2>
-      <p class="section-intro">
-        I like building and understanding systems — software, hardware, engineering tools, communication tech, 
+      <h2 class="section-title" data-i18n="about_title">About</h2>
+      <p class="section-intro" data-i18n="about_intro">
+        I like building and understanding systems — software, hardware, engineering tools, communication tech,
         or creative projects — and I move naturally between fields because I learn fast and adapt quickly.
         I bring a positive, energetic presence to any environment, and I’m the kind of person who supports the people
         around me while pushing forward with careful optimism.
@@ -490,8 +508,8 @@
 
       <div class="grid grid-2">
         <article class="card">
-          <h3>What I like working on</h3>
-          <p class="muted-small">
+          <h3 data-i18n="work_like_title">What I like working on</h3>
+          <p class="muted-small" data-i18n-html="work_like_body">
             • Tools that make complex systems easier to use &amp; understand (GUIs, scripts, documentation).<br />
             • Signal-related projects: satellite &amp; ham radio communications, and building physical electronic systems.<br />
             • Small games or interactive projects where code, visuals, and music all meet.
@@ -499,8 +517,8 @@
         </article>
 
         <article class="card">
-          <h3>Near Future</h3>
-          <p class="muted-small">
+          <h3 data-i18n="near_future_title">Near Future</h3>
+          <p class="muted-small" data-i18n-html="near_future_body">
             • Preparing for army service while gaining experience in high-tech environments.<br>
             • Working on small side projects — including this website — to learn, experiment, and improve.<br>
             • Exploring where I want to take my engineering, software, and creative work in the future.
@@ -511,39 +529,39 @@
 
     <!-- ========= EXPERIENCE ========= -->
     <section id="experience">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-intro">
+      <h2 class="section-title" data-i18n="exp_title">Experience</h2>
+      <p class="section-intro" data-i18n="exp_intro">
         Some highlights from the last few years. Full details are in my CV, but here’s the short version.
       </p>
 
       <div class="grid grid-2">
         <article class="card timeline-item">
-          <div class="timeline-label">2022–2025 · Herzliya Science Center</div>
-          <h3 class="timeline-title">Satellite Program — Comms &amp; Ground Station</h3>
-          <p class="muted-small">
+          <div class="timeline-label" data-i18n="exp1_label">2022–2025 · Herzliya Science Center</div>
+          <h3 class="timeline-title" data-i18n="exp1_title">Satellite Program — Comms &amp; Ground Station</h3>
+          <p class="muted-small" data-i18n-html="exp1_body">
             • Led the Communications team and managed the ground station, including daily operations and automation work.<br />
             • Worked on software for four Tevel-2 satellites: protocol handling, Doppler correction, and integration with GNU Radio pipelines.<br />
             • Documented over 50 subsystems so new students could understand and operate the station.
           </p>
           <div class="pill-row">
-            <span class="pill">Team lead</span>
-            <span class="pill">Systems &amp; docs</span>
-            <span class="pill">Teaching</span>
+            <span class="pill" data-i18n="pill_teamlead">Team lead</span>
+            <span class="pill" data-i18n="pill_systems">Systems &amp; docs</span>
+            <span class="pill" data-i18n="pill_teaching">Teaching</span>
           </div>
         </article>
 
         <article class="card timeline-item">
-          <div class="timeline-label">Independent &amp; School Projects</div>
-          <h3 class="timeline-title">Engineering + Creative Projects</h3>
-          <p class="muted-small">
+          <div class="timeline-label" data-i18n="exp2_label">Independent &amp; School Projects</div>
+          <h3 class="timeline-title" data-i18n="exp2_title">Engineering + Creative Projects</h3>
+          <p class="muted-small" data-i18n-html="exp2_body">
             • Educational mini Tesla coil designed and built from scratch.<br />
             • <em>Soul</em> — small game with custom physics, original music, and level design.<br />
             • Extra experiments with electronics, antennas, and random “can I build this?” ideas.
           </p>
           <div class="pill-row">
-            <span class="pill">Electronics</span>
-            <span class="pill">Game dev</span>
-            <span class="pill">Music</span>
+            <span class="pill" data-i18n="pill_electronics">Electronics</span>
+            <span class="pill" data-i18n="pill_gamedev">Game dev</span>
+            <span class="pill" data-i18n="pill_music">Music</span>
           </div>
         </article>
       </div>
@@ -551,16 +569,16 @@
 
     <!-- ========= PROJECTS ========= -->
     <section id="projects">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-intro">
+      <h2 class="section-title" data-i18n="projects_title">Projects</h2>
+      <p class="section-intro" data-i18n="projects_intro">
         Some projects are still partially internal / not open-sourced, so links may be placeholders for now.
         As I clean things up, I’ll publish more details.
       </p>
 
       <div class="grid grid-3">
         <article class="card">
-          <h3>Automated Ground Station</h3>
-          <p class="muted-small">
+          <h3 data-i18n="proj1_title">Automated Ground Station</h3>
+          <p class="muted-small" data-i18n="proj1_body">
             Mobile ground station setup with Doppler correction, AX.25 support, and the ability to
             plug into GNU Radio flows. Focused on reliability and making operations friendlier.
           </p>
@@ -569,34 +587,34 @@
             <span class="pill">GNU Radio</span>
             <span class="pill">Linux / WSL</span>
           </div>
-          <p class="muted-small" style="margin-top:8px;">
-            <em>Repo link coming after sanitizing internal bits.</em>
+          <p class="muted-small" style="margin-top:8px;" data-i18n="proj1_note">
+            Repo link coming after sanitizing internal bits.
           </p>
         </article>
 
         <article class="card">
-          <h3>Ground Station Mapping</h3>
-          <p class="muted-small">
+          <h3 data-i18n="proj2_title">Ground Station Mapping</h3>
+          <p class="muted-small" data-i18n="proj2_body">
             System diagrams &amp; docs for 50+ subsystems — created to help others understand how
             everything connects, from antennas and RF to software and monitoring.
           </p>
           <div class="pill-row">
             <span class="pill">Draw.io</span>
-            <span class="pill">Documentation</span>
-            <span class="pill">Systems thinking</span>
+            <span class="pill" data-i18n="pill_docs">Documentation</span>
+            <span class="pill" data-i18n="pill_systemsthinking">Systems thinking</span>
           </div>
         </article>
 
         <article class="card">
-          <h3>Soul — Game Prototype</h3>
-          <p class="muted-small">
+          <h3 data-i18n="proj3_title">Soul — Game Prototype</h3>
+          <p class="muted-small" data-i18n="proj3_body">
             Indie-style platformer built as a school hackathon project: custom physics, original
             music, level design, and a lot of late-night debugging.
           </p>
           <div class="pill-row">
             <span class="pill">C# / GDScript</span>
-            <span class="pill">Game dev</span>
-            <span class="pill">Music</span>
+            <span class="pill" data-i18n="pill_gamedev">Game dev</span>
+            <span class="pill" data-i18n="pill_music">Music</span>
           </div>
         </article>
       </div>
@@ -604,27 +622,27 @@
 
     <!-- ========= SKILLS ========= -->
     <section id="skills">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title" data-i18n="skills_title">Skills</h2>
 
       <div class="grid grid-3">
         <article class="card">
-          <h3>Programming</h3>
-          <p class="muted-small">
-            Python, C++, C#, JavaScript, HTML/CSS, Git.  
+          <h3 data-i18n="skills_prog_title">Programming</h3>
+          <p class="muted-small" data-i18n="skills_prog_body">
+            Python, C++, C#, JavaScript, HTML/CSS, Git.
             Comfortable with small tools, scripts, and glue code around systems.
           </p>
         </article>
 
         <article class="card">
-          <h3>Comms &amp; RF</h3>
-          <p class="muted-small">
+          <h3 data-i18n="skills_rf_title">Comms &amp; RF</h3>
+          <p class="muted-small" data-i18n="skills_rf_body">
             GNU Radio, AX.25, SDR basics, Yagi antennas, Doppler workflows and ground-station thinking.
           </p>
         </article>
 
         <article class="card">
-          <h3>Systems &amp; People</h3>
-          <p class="muted-small">
+          <h3 data-i18n="skills_people_title">Systems &amp; People</h3>
+          <p class="muted-small" data-i18n="skills_people_body">
             Linux/WSL, basic databases, docs &amp; diagrams, teaching younger students, and explaining
             weird technical stuff in plain language.
           </p>
@@ -634,41 +652,40 @@
 
     <!-- ========= CONTACT ========= -->
     <section id="contact">
-      <h2 class="section-title">Contact &amp; bits about me</h2>
+      <h2 class="section-title" data-i18n="contact_title">Contact &amp; bits about me</h2>
 
       <div class="contact-grid">
         <article class="card">
-          <h3>Contact</h3>
+          <h3 data-i18n="contact_hdr">Contact</h3>
           <ul class="contact-list">
             <li>
-              <span class="label">Email</span>
+              <span class="label" data-i18n="label_email">Email</span>
               <a href="mailto:talavhar3@gmail.com">talavhar3@gmail.com</a>
             </li>
             <li>
-              <span class="label">GitHub</span>
+              <span class="label" data-i18n="label_github">GitHub</span>
               <a href="https://github.com/TalAvhar" target="_blank" rel="noopener">
                 github.com/TalAvhar
               </a>
             </li>
             <li>
-              <span class="label">LinkedIn</span>
-              <!-- TODO: replace this with your actual LinkedIn URL -->
+              <span class="label" data-i18n="label_linkedin">LinkedIn</span>
               <a href="https://www.linkedin.com/in/tal-avhar" target="_blank" rel="noopener">
                 linkedin.com/in/tal-avhar
               </a>
             </li>
           </ul>
-          <p class="contact-note">
+          <p class="contact-note" data-i18n="contact_note">
             For anything serious (roles, collaborations, or “can we build X?” ideas), email is best.
           </p>
         </article>
 
         <article class="card">
-          <h3>Fun facts</h3>
+          <h3 data-i18n="fun_hdr">Fun facts</h3>
           <ul class="fun-facts-list">
-            <li>🎧 I like combining engineering with music and game design.</li>
-            <li>📡 I really enjoy the feeling of getting actual data back from something in orbit.</li>
-            <li>🧪 I learn fastest by building small experiments, breaking them, and fixing them again.</li>
+            <li data-i18n="fun1">🎧 I like combining engineering with music and game design.</li>
+            <li data-i18n="fun2">📡 I really enjoy the feeling of getting actual data back from something in orbit.</li>
+            <li data-i18n="fun3">🧪 I learn fastest by building small experiments, breaking them, and fixing them again.</li>
           </ul>
         </article>
       </div>
@@ -676,15 +693,242 @@
 
     <!-- ========= FOOTER ========= -->
     <footer>
-      <span id="year"></span> · Built by Tal Avhar · Hosted on GitHub Pages
-      · <a href="#top">Back to top</a> ·
-      <a href="personal.html">Switch to personal</a>
+      <span id="year"></span>
+      <span data-i18n="footer_mid"> · Built by Tal Avhar · Hosted on GitHub Pages</span>
+      · <a href="#top" data-i18n="footer_top">Back to top</a> ·
+      <a href="personal.html" data-i18n="footer_switch">Switch to personal</a>
     </footer>
   </div>
 
   <script>
-    // Set current year automatically
+    // year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // simple i18n
+    const LANG_KEY = "site_lang";
+    const I18N = {
+      en: {
+        name: "Tal Avhar",
+        nav_professional: "Professional",
+        nav_personal: "Personal",
+        hero_title: "Satellites, software & creative experiments.",
+        hero_sub:
+          `I’m Tal, an ever-energetic engineering+physics graduate who loves building systems, with talent and experience in
+          <strong>code</strong>, <strong>satellite communications</strong>, <strong>engineering</strong> &amp; <strong>technology</strong>, the <strong>arts</strong> and such..
+          I’m quick to adapt to new environments, learn fast, and rely on strong intuition to navigate challenges and build forward-thinking solutions.`,
+        tag_location: "Herzliya, Israel",
+        tag_langs: "Hebrew & English — C2",
+        tag_stack: "Python • C# • JS",
+        btn_projects: "See my projects",
+        btn_contact: "Get in touch",
+        snapshot_label: "Snapshot",
+        snapshot_text:
+          "Alumni of the Herzliya Science Center Satellite Program — where I served as Communications Team Lead and Ground Station Manager.",
+        snapshot_sub:
+          "I took a major part in writing software, integrating with hardware, working on electromagnetic communication systems, managing logistical organization, teaching, and presenting to teams and audiences.",
+        chip_satcom: "Satellite Comms",
+        chip_gnuradio: "GNU Radio & AX.25",
+        chip_linux: "Linux / WSL",
+        chip_docs: "Documentation & Organization",
+        about_title: "About",
+        about_intro:
+          "I like building and understanding systems — software, hardware, engineering tools, communication tech, or creative projects — and I move naturally between fields because I learn fast and adapt quickly. I bring a positive, energetic presence to any environment, and I’m the kind of person who supports the people around me while pushing forward with careful optimism.",
+        work_like_title: "What I like working on",
+        work_like_body:
+          `• Tools that make complex systems easier to use &amp; understand (GUIs, scripts, documentation).<br />
+           • Signal-related projects: satellite &amp; ham radio communications, and building physical electronic systems.<br />
+           • Small games or interactive projects where code, visuals, and music all meet.`,
+        near_future_title: "Near Future",
+        near_future_body:
+          `• Preparing for army service while gaining experience in high-tech environments.<br>
+           • Working on small side projects — including this website — to learn, experiment, and improve.<br>
+           • Exploring where I want to take my engineering, software, and creative work in the future.`,
+        exp_title: "Experience",
+        exp_intro: "Some highlights from the last few years. Full details are in my CV, but here’s the short version.",
+        exp1_label: "2022–2025 · Herzliya Science Center",
+        exp1_title: "Satellite Program — Comms & Ground Station",
+        exp1_body:
+          `• Led the Communications team and managed the ground station, including daily operations and automation work.<br />
+           • Worked on software for four Tevel-2 satellites: protocol handling, Doppler correction, and integration with GNU Radio pipelines.<br />
+           • Documented over 50 subsystems so new students could understand and operate the station.`,
+        pill_teamlead: "Team lead",
+        pill_systems: "Systems & docs",
+        pill_teaching: "Teaching",
+        exp2_label: "Independent & School Projects",
+        exp2_title: "Engineering + Creative Projects",
+        exp2_body:
+          `• Educational mini Tesla coil designed and built from scratch.<br />
+           • <em>Soul</em> — small game with custom physics, original music, and level design.<br />
+           • Extra experiments with electronics, antennas, and random “can I build this?” ideas.`,
+        pill_electronics: "Electronics",
+        pill_gamedev: "Game dev",
+        pill_music: "Music",
+        projects_title: "Projects",
+        projects_intro:
+          "Some projects are still partially internal / not open-sourced, so links may be placeholders for now. As I clean things up, I’ll publish more details.",
+        proj1_title: "Automated Ground Station",
+        proj1_body:
+          "Mobile ground station setup with Doppler correction, AX.25 support, and the ability to plug into GNU Radio flows. Focused on reliability and making operations friendlier.",
+        proj1_note: "Repo link coming after sanitizing internal bits.",
+        proj2_title: "Ground Station Mapping",
+        proj2_body:
+          "System diagrams & docs for 50+ subsystems — created to help others understand how everything connects, from antennas and RF to software and monitoring.",
+        proj3_title: "Soul — Game Prototype",
+        proj3_body:
+          "Indie-style platformer built as a school hackathon project: custom physics, original music, level design, and a lot of late-night debugging.",
+        pill_docs: "Documentation",
+        pill_systemsthinking: "Systems thinking",
+        skills_title: "Skills",
+        skills_prog_title: "Programming",
+        skills_prog_body:
+          "Python, C++, C#, JavaScript, HTML/CSS, Git. Comfortable with small tools, scripts, and glue code around systems.",
+        skills_rf_title: "Comms & RF",
+        skills_rf_body:
+          "GNU Radio, AX.25, SDR basics, Yagi antennas, Doppler workflows and ground-station thinking.",
+        skills_people_title: "Systems & People",
+        skills_people_body:
+          "Linux/WSL, basic databases, docs & diagrams, teaching younger students, and explaining weird technical stuff in plain language.",
+        contact_title: "Contact & bits about me",
+        contact_hdr: "Contact",
+        label_email: "Email",
+        label_github: "GitHub",
+        label_linkedin: "LinkedIn",
+        contact_note:
+          "For anything serious (roles, collaborations, or “can we build X?” ideas), email is best.",
+        fun_hdr: "Fun facts",
+        fun1: "🎧 I like combining engineering with music and game design.",
+        fun2: "📡 I really enjoy the feeling of getting actual data back from something in orbit.",
+        fun3: "🧪 I learn fastest by building small experiments, breaking them, and fixing them again.",
+        footer_mid: " · Built by Tal Avhar · Hosted on GitHub Pages",
+        footer_top: "Back to top",
+        footer_switch: "Switch to personal",
+      },
+      he: {
+        name: "טל אבהר",
+        nav_professional: "מקצועי",
+        nav_personal: "אישי",
+        hero_title: "לוויינים, תוכנה וניסויים יצירתיים.",
+        hero_sub:
+          `אני טל — בוגר הנדסה+פיזיקה אנרגטי שאוהב לבנות מערכות, עם ניסיון ויכולות ב־
+          <strong>קוד</strong>, <strong>תקשורת לוויינית</strong>, <strong>הנדסה</strong> ו<strong>טכנולוגיה</strong>, וגם <strong>אמנות</strong>.
+          אני מסתגל מהר לסביבות חדשות, לומד מהר, ונשען על אינטואיציה חזקה כדי להתמודד עם אתגרים ולבנות פתרונות קדימה.`,
+        tag_location: "הרצליה, ישראל",
+        tag_langs: "עברית ואנגלית — C2",
+        tag_stack: "Python • C# • JS",
+        btn_projects: "לפרויקטים",
+        btn_contact: "דברו איתי",
+        snapshot_label: "בתמצית",
+        snapshot_text:
+          "בוגר תוכנית הלוויינים של מרכז המדעים הרצליה — הובלתי צוות תקשורת וניהלתי תחנת קרקע.",
+        snapshot_sub:
+          "לקחתי חלק מרכזי בכתיבת תוכנה, אינטגרציה לחומרה, עבודה עם מערכות תקשורת אלקטרומגנטיות, ניהול ותפעול, הדרכה והצגה לקהלים וצוותים.",
+        chip_satcom: "תקשורת לוויינים",
+        chip_gnuradio: "GNU Radio ו־AX.25",
+        chip_linux: "Linux / WSL",
+        chip_docs: "תיעוד וארגון",
+        about_title: "עליי",
+        about_intro:
+          "אני אוהב לבנות ולהבין מערכות — תוכנה, חומרה, כלים הנדסיים, טכנולוגיות תקשורת או פרויקטים יצירתיים — ונע בקלות בין תחומים כי אני לומד מהר ומסתגל מהר. אני מביא אנרגיה חיובית לסביבה, תומך באנשים סביבי, ומתקדם קדימה עם אופטימיות זהירה.",
+        work_like_title: "מה אני אוהב לבנות",
+        work_like_body:
+          `• כלים שמפשטים מערכות מורכבות (GUI, סקריפטים, תיעוד).<br />
+           • פרויקטים סביב אותות: תקשורת לוויינים/חובבים ובניית מערכות אלקטרוניות פיזיות.<br />
+           • משחקים קטנים או פרויקטים אינטראקטיביים שמחברים קוד, ויזואל ומוזיקה.`,
+        near_future_title: "בטווח הקרוב",
+        near_future_body:
+          `• הכנה לשירות צבאי תוך צבירת ניסיון בסביבות הייטק.<br>
+           • עבודה על פרויקטים קטנים — כולל האתר הזה — כדי ללמוד, להתנסות ולהשתפר.<br>
+           • חקירה לאן אני רוצה לקחת את ההנדסה, התוכנה והיצירתיות שלי.`,
+        exp_title: "ניסיון",
+        exp_intro: "כמה נקודות מהשנים האחרונות. הפרטים המלאים בקו״ח, וכאן הגרסה הקצרה.",
+        exp1_label: "2022–2025 · מרכז המדעים הרצליה",
+        exp1_title: "תוכנית לוויינים — תקשורת ותחנת קרקע",
+        exp1_body:
+          `• הובלתי את צוות התקשורת וניהלתי את תחנת הקרקע (תפעול ואוטומציה).<br />
+           • פיתוח תוכנה ל־4 לווייני תבל־2: פרוטוקולים, תיקון דופלר ואינטגרציה ל־GNU Radio.<br />
+           • תיעוד של 50+ תתי־מערכות כדי לאפשר חפיפה ותפעול לדורות הבאים.`,
+        pill_teamlead: "הובלת צוות",
+        pill_systems: "מערכות ותיעוד",
+        pill_teaching: "הדרכה",
+        exp2_label: "פרויקטים עצמאיים ולימודיים",
+        exp2_title: "פרויקטים הנדסיים + יצירתיים",
+        exp2_body:
+          `• סליל טסלה חינוכי קטן שתוכנן ונבנה מאפס.<br />
+           • <em>Soul</em> — משחק קטן עם פיזיקה מותאמת, מוזיקה מקורית ועיצוב שלבים.<br />
+           • ניסויים באלקטרוניקה, אנטנות ועוד רעיונות בסגנון “אפשר לבנות את זה?”.`,
+        pill_electronics: "אלקטרוניקה",
+        pill_gamedev: "פיתוח משחקים",
+        pill_music: "מוזיקה",
+        projects_title: "פרויקטים",
+        projects_intro:
+          "חלק מהפרויקטים עדיין לא פתוחים/מנוקים מפרטים פנימיים, לכן חלק מהקישורים זמניים. עם הזמן אפרסם יותר.",
+        proj1_title: "תחנת קרקע אוטומטית",
+        proj1_body:
+          "סטאפ לתחנת קרקע ניידת עם תיקון דופלר, AX.25, וחיבור לזרימות GNU Radio — עם דגש על אמינות וחוויית תפעול.",
+        proj1_note: "קישור לריפו יגיע אחרי ניקוי דברים פנימיים.",
+        proj2_title: "מיפוי תחנת הקרקע",
+        proj2_body:
+          "דיאגרמות ותיעוד ל־50+ תתי־מערכות כדי להבין איך הכול מתחבר — מאנטנות ו־RF ועד תוכנה ומוניטורינג.",
+        proj3_title: "Soul — אבטיפוס משחק",
+        proj3_body:
+          "פלטפורמר בסגנון אינדי בפרויקט האקתון: פיזיקה מותאמת, מוזיקה מקורית, עיצוב שלבים, והמון דיבאג בלילה.",
+        pill_docs: "תיעוד",
+        pill_systemsthinking: "חשיבה מערכתית",
+        skills_title: "יכולות",
+        skills_prog_title: "תכנות",
+        skills_prog_body:
+          "Python, C++, C#, JavaScript, HTML/CSS, Git. נוח לי עם כלים קטנים, סקריפטים ו־glue code סביב מערכות.",
+        skills_rf_title: "תקשורת ו־RF",
+        skills_rf_body:
+          "GNU Radio, AX.25, יסודות SDR, אנטנות יאגי, דופלר וחשיבה של תחנת קרקע.",
+        skills_people_title: "מערכות ואנשים",
+        skills_people_body:
+          "Linux/WSL, בסיסי DB, תיעוד ודיאגרמות, הדרכת תלמידים צעירים והסברים פשוטים לדברים טכניים.",
+        contact_title: "יצירת קשר ועוד",
+        contact_hdr: "קשר",
+        label_email: "אימייל",
+        label_github: "GitHub",
+        label_linkedin: "LinkedIn",
+        contact_note:
+          "לדברים רציניים (תפקידים, שיתופי פעולה או “בוא נבנה X”) — אימייל הכי טוב.",
+        fun_hdr: "פאן־פקטס",
+        fun1: "🎧 אני אוהב לחבר הנדסה עם מוזיקה ועיצוב משחקים.",
+        fun2: "📡 יש משהו ממכר בלהוציא דאטה ממשהו שנמצא במסלול.",
+        fun3: "🧪 אני לומד הכי מהר כשאני בונה ניסוי קטן, שובר אותו, ואז מתקן.",
+        footer_mid: " · נבנה על ידי טל אבהר · מאוחסן ב־GitHub Pages",
+        footer_top: "חזרה למעלה",
+        footer_switch: "לעבור לאישי",
+      }
+    };
+
+    function applyLang(lang) {
+      const isHe = lang === "he";
+      document.documentElement.lang = lang;
+      document.body.classList.toggle("rtl", isHe);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const txt = I18N[lang]?.[key];
+        if (typeof txt === "string") el.textContent = txt;
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach(el => {
+        const key = el.getAttribute("data-i18n-html");
+        const html = I18N[lang]?.[key];
+        if (typeof html === "string") el.innerHTML = html;
+      });
+
+      localStorage.setItem(LANG_KEY, lang);
+      const btn = document.getElementById("langToggle");
+      if (btn) btn.textContent = isHe ? "HE" : "EN";
+    }
+
+    document.getElementById("langToggle")?.addEventListener("click", () => {
+      const cur = localStorage.getItem(LANG_KEY) || "en";
+      applyLang(cur === "en" ? "he" : "en");
+    });
+
+    applyLang(localStorage.getItem(LANG_KEY) || "en");
   </script>
 </body>
 </html>
